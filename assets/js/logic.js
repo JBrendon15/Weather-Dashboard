@@ -49,7 +49,6 @@ function getFiveDay(){
         fiveDayArr.push(results.list[23]);
         fiveDayArr.push(results.list[31]);
         fiveDayArr.push(results.list[39]);
-        console.log(fiveDayArr);
         for(let i = 0; i < fiveDayArr.length; i++){
             let temp = $('<p>').text(`Temp: ${fiveDayArr[i].main.temp}°F`);
             let windSpeed = $('<p>').text(`Wind: ${fiveDayArr[i].wind.speed} MPH`);
