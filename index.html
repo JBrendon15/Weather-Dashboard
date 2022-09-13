@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    ></script>
 
 </head>
 <body>
@@ -13,14 +17,20 @@
         <h1 class="h1 text-white">Weather Dashboard</h1>
     </nav>
 
-    <div class="container row col-lg-12">
-      <form class="col-lg-4">
+    <div class="container-fluid row">
+      <form class="col-lg-2">
           <h2>Search for a City:</h2>
-          <input type="text" class="form-control mb-3" id="city-search" aria-describedby="emailHelp">
+          <input type="text" class="form-control mb-3" id="city-search">
           <button type="submit" class="btn btn-primary btn-block" id="search-btn">Search</button>
       </form>
-      <div class="col-lg-8 bg-primary block border">  
-        <h2>PLACEHOLDER</h2>
+      <div class="col-lg-10 bg-primary d-flex flex-column align-content-between"> 
+        <div id="display-today">
+          <h2 id="weather-today"></h2>
+        </div> 
+        <div>
+          <h2>PLACEHOLDER 2</h2>
+        </div> 
+        
       </div>  
     </div>
 
