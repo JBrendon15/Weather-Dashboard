@@ -62,7 +62,7 @@ function getFiveDay(){
             let dateArr = fiveDayArr[i].dt_txt.split(" ")[0].split('-');
             let cardName = $('<h5>').text(`${dateArr[1]}/${dateArr[2]}/${dateArr[0]}`);
             cardName.attr('class','card-title');
-            let cardBody = $('<div>').attr('class', 'card-body bg-dark text-white');
+            let cardBody = $('<div>').attr('class', 'card-body bg-primary text-white');
             let cardContainer = $('<div>',{
                 class: 'card',
                 style: 'width: 18rem;'
