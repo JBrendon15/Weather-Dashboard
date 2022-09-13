@@ -4,12 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 
 </head>
 <body>
-    
+    <nav class="navbar bg-primary d-flex justify-content-center">
+        <h1 class="h1 text-white">Weather Dashboard</h1>
+    </nav>
+
+    <div class="container row col-lg-12">
+      <form class="col-lg-4">
+          <h2>Search for a City:</h2>
+          <input type="text" class="form-control mb-3" id="city-search" aria-describedby="emailHelp">
+          <button type="submit" class="btn btn-primary btn-block" id="search-btn">Search</button>
+      </form>
+      <div class="col-lg-8 bg-primary block border">  
+        <h2>PLACEHOLDER</h2>
+      </div>  
+    </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
