@@ -18,7 +18,7 @@ function getWeather(event){
     })
     .then(function(results){
         let weatherIcon = results.weather[0].icon;
-        let iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}.png`
+        let iconUrl = `https://openweathermap.org/img/wn/${weatherIcon}.png`
         let iconImage = $('<img>',{
             src: `${iconUrl}`,
             alt: 'weather-icon'
@@ -54,7 +54,7 @@ function getFiveDay(){
             let windSpeed = $('<p>').text(`Wind: ${fiveDayArr[i].wind.speed} MPH`);
             let humid = $('<p>').text(`Wind: ${fiveDayArr[i].main.humidity} %`);
             let weatherIcon = fiveDayArr[i].weather[0].icon;
-            let iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}.png`
+            let iconUrl = `https://openweathermap.org/img/wn/${weatherIcon}.png`
             let iconImage = $('<img>',{
                 src: `${iconUrl}`,
                 alt: 'weather-icon'
