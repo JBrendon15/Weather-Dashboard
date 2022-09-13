@@ -5,16 +5,23 @@ let searchSubmit = $('#search-btn');
 let weatherToday = $('#weather-today');
 let todayDisplay = $('#display-today');
 let forecastContainer = $('#yugioh-cards');
+let searchCol = $('#search-panel');
 
 //this function gets the weather information for the current day and creates elements dynamically to the html 
 function getWeather(event){
     event.preventDefault();
+    userLocation.text(" ");
     $('#display-today p').remove();
     let userCity = userLocation.val();
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&APPID=${apiKey}&units=imperial`;
     fetch(apiUrl)
     .then(function(response){
-        return response.json();
+        if(response.status !== 200){
+            alert('Please enter a valid city name');
+        }
+        else{
+            return response.json();
+        }
     })
     .then(function(results){
         let weatherIcon = results.weather[0].icon;
@@ -31,8 +38,9 @@ function getWeather(event){
         todayDisplay.append(temp, windSpeed, humid);
         todayDisplay.attr('class', 'border border-dark p-3');
         getFiveDay();
-    })   
-}
+        createHistory();
+    })    
+    }; 
 //this function pulls the weather information we need for the next five days and creates the elements dynamically on the html
 function getFiveDay(){
     let userCity = userLocation.val();
@@ -72,6 +80,15 @@ function getFiveDay(){
             forecastContainer.append(cardContainer);
         }
     })
-}    
+}
 
-searchSubmit.on('click', getWeather)
+function createHistory(){
+
+    previousSearch = userLocation.val();
+    searchHistory = JSON.parse(localStorage.getItem('allHistory')) || [];
+    searchHistory.push(previousSearch);
+    localStorage.setItem('allHistory', JSON.stringify(searchHistory));
+}
+
+searchSubmit.on('click', getWeather);
+// let previousSearch = $('<button>').attr('class', 'col btn btn-light btn-block previous-search');
