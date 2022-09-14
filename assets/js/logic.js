@@ -10,7 +10,6 @@ let searchCol = $('#search-panel');
 //this function gets the weather information for the current day and creates elements dynamically to the html 
 function getWeather(event){
     event.preventDefault();
-    userLocation.text(" ");
     $('#display-today p').remove();
     let userCity = userLocation.val();
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&APPID=${apiKey}&units=imperial`;
@@ -78,17 +77,34 @@ function getFiveDay(){
             cardBody.append(cardName, iconImage, temp, windSpeed, humid);
             cardContainer.append(cardBody);
             forecastContainer.append(cardContainer);
+            userLocation.val("");
         }
     })
 }
-
+//this function saves the user search to the localstorage and I included an if condition to not have the same search be pushed into localstorage multiple times
 function createHistory(){
-
     previousSearch = userLocation.val();
     searchHistory = JSON.parse(localStorage.getItem('allHistory')) || [];
-    searchHistory.push(previousSearch);
+    if(!searchHistory.includes(previousSearch.toLowerCase())){
+        searchHistory.push(previousSearch.toLowerCase());
+    }
     localStorage.setItem('allHistory', JSON.stringify(searchHistory));
 }
-
+//this function adds the previous searches as buttons on the left hand side of webpage
+function addingButtons(){
+    let savedSearches = JSON.parse(localStorage.getItem('allHistory'));
+    for(let i = 0; i < savedSearches.length; i++){
+        let historyButton = $('<button>').attr('class', 'col btn btn-light btn-block previous-search');
+        historyButton.text(savedSearches[i]);
+        searchCol.append(historyButton);
+    }
+}
+//this adds an event listener to the parent div of the created buttons to set the search value equal to the text value of the button clicked to run the getWeather function
+searchCol.on('click', '.previous-search', function(e){
+    e.preventDefault();
+    userLocation.val($(e.target).text());
+    getWeather(e);
+});
 searchSubmit.on('click', getWeather);
+$(document).ready(addingButtons);
 // let previousSearch = $('<button>').attr('class', 'col btn btn-light btn-block previous-search');
